@@ -23,7 +23,6 @@ function Navbar() {
             <nav className="nav-menu">
                 <Link to="/" className="nav-link">Главное</Link>
                 <Link to="/booking" className="nav-link">Забронированные</Link>
-                <Link to="/rooms" className="nav-link">Комнаты</Link>
 
                 {user ? (
                     <>

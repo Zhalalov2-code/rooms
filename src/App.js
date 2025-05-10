@@ -5,9 +5,9 @@ import Main from "./pages/main";
 import Login from "./pages/login";
 import SignUp from "./pages/signUp";
 import Booking from "./pages/booking";
-import Rooms from "./pages/rooms";
 import Profil from "./pages/profil";
 import Card from "./components/card";
+import Details from "./pages/room.details"; // Здесь компонент для деталей отеля
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/booking" element={<Booking />} />
-          <Route path="/rooms" element={<Rooms />} />
+          <Route path="/hotel/:id" element={<Details />} /> {/* Исправленный маршрут для деталей отеля */}
           <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
           <Route path="/card" element={<Card />} />
         </Routes>

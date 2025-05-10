@@ -1,5 +1,5 @@
-import React from "react";
 import "../css/card.css";
+import { Link } from "react-router-dom"
 
 const Card = ({ hotel }) => {
   return (
@@ -12,14 +12,14 @@ const Card = ({ hotel }) => {
         </p>
         <p className="hotel-description">{hotel.description}</p>
         <div className="hotel-amenities">
-          {hotel.amenities.map((item, i) => (
+          {Array.isArray(hotel.amenities) && hotel.amenities.map((item, i) => (
             <span key={i} className="hotel-amenity">{item}</span>
           ))}
         </div>
         <div className="hotel-footer">
           <span className="hotel-price">${hotel.price}/night</span>
           <span className="hotel-rating">⭐ {hotel.rating}</span>
-          <button>Подробнее</button>
+          <Link to={`/hotel/${hotel.id}`}><button>Подробнее</button></Link>
         </div>
       </div>
     </div>

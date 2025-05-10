@@ -1,0 +1,125 @@
+.details-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #7C6A46;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.details-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.hotels-image {
+    width: 80%;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.hotels-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 20px 0;
+    font-weight: 300;
+    color: #f1f1f1;
+}
+
+.details-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.details-footer .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.details-footer .rating {
+    font-size: 1.5rem;
+    color: #f39c12;
+}
+
+.book-button {
+    background-color: #2980b9;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+.book-button:hover {
+    background-color: #3498db;
+    transform: scale(1.05);
+}
+
+.hotel-info {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 1rem;
+    background-color: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.amenities {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.amenities h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #f1f1f1;
+}
+
+.amenities ul {
+    list-style: none;
+    padding: 0;
+}
+
+.amenities li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+    .details-container {
+        padding: 20px;
+    }
+
+    .hotels-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .details-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .details-footer .price,
+    .details-footer .rating {
+        margin-bottom: 10px;
+    }
+
+    .book-button {
+        width: 100%;
+    }
+}

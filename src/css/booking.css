@@ -1,0 +1,27 @@
+.booked-container {
+  padding: 20px;
+}
+
+.booked-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.booked-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+.booked-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.booked-info {
+  padding: 10px;
+}
