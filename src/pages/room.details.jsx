@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from '../components/navbar.jsx'
 import axios from "axios";
 import "../css/details.css";
+import { useAuth } from "../components/authoContext.jsx";
 
 function Details() {
     const { id } = useParams();
@@ -10,6 +11,8 @@ function Details() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    
+    const { user } = useAuth();
 
     useEffect(() => {
         const fetchHotelData = async () => {
@@ -27,11 +30,17 @@ function Details() {
     }, [id]);
 
     const handleBooking = async () => {
+        if (!user) {
+            alert("Пожалуйста, войдите в систему для бронирования.");
+            navigate("/login");
+            return;
+        }
+
         try {
             await axios.post("https://681f76f472e59f922ef6578f.mockapi.io/booked", hotel);
             await axios.delete(`https://6815245932debfe95dbafa1d.mockapi.io/rooms/${id}`);
             alert("Комната успешно забронирована!");
-            navigate("/booking")
+            navigate("/booking");
         } catch (error) {
             console.error("Ошибка при бронировании:", error);
             alert("Произошла ошибка при бронировании.");
@@ -39,8 +48,8 @@ function Details() {
     }
 
     if (loading) return <div>Загрузка...</div>;
-    if (error) return <div>{error}</div>;
-    if (!hotel) return <div>Отель не найден</div>;
+    if (error) return <div>{`Ошибка: ${error}`}</div>;
+    if (!hotel || !hotel.name) return <div>Информация о отеле не доступна.</div>;
 
     return (
         <div>
