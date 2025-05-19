@@ -5,6 +5,7 @@
     margin: 0px;
     padding: 0px;
     margin-top: 50px;
+    margin-left: 50px;
 }
 
 .blok1{
@@ -19,7 +20,7 @@
     left: 100px;
 }
 
-input{
+.input1{
     width: 300px;
     height: 30px;
 }

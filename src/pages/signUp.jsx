@@ -53,6 +53,7 @@ function SignUp() {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        className='input1'
                     />
                     <br /><br />
 
@@ -64,6 +65,7 @@ function SignUp() {
                         value={formData.phone}
                         onChange={handleChange}
                         required
+                        className='input1'
                     />
                     <br /><br />
 
@@ -75,6 +77,7 @@ function SignUp() {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        className='input1'
                     />
                     <br /><br />
 
@@ -86,6 +89,7 @@ function SignUp() {
                         value={formData.password}
                         onChange={handleChange}
                         required
+                        className='input1'
                     />
                     <br /><br />
 

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom"
 const Card = ({ hotel }) => {
   return (
     <div className="hotel-card">
-      <img src={hotel.photo} alt={hotel.name} className="hotel-image" />
+      <div className="blok1">
+        <img src={hotel.photo} alt={hotel.name} className="hotel-image" />
+      </div>
       <div className="hotel-content">
         <h2 className="hotel-name">{hotel.name}</h2>
         <p className="hotel-location">
@@ -16,11 +18,15 @@ const Card = ({ hotel }) => {
             <span key={i} className="hotel-amenity">{item}</span>
           ))}
         </div>
-        <div className="hotel-footer">
-          <span className="hotel-price">${hotel.price}/night</span>
-          <span className="hotel-rating">⭐ {hotel.rating}</span>
-          <Link to={`/hotel/${hotel.id}`}><button>Подробнее</button></Link>
-        </div>
+      </div>
+      <div className="hotel-footer">
+        <span className="hotel-price">${hotel.price}/night</span>
+        <br />
+        <br />
+        <span className="hotel-rating">Оценка ⭐ {hotel.rating}</span>
+        <br />
+        <br />
+        <Link to={`/hotel/${hotel.id}`}><button>Подробнее</button></Link>
       </div>
     </div>
   );

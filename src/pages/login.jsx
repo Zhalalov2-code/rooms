@@ -123,6 +123,7 @@ function Login() {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        className='input1'
                     />
                     <br /><br />
 
@@ -134,6 +135,7 @@ function Login() {
                         value={formData.password}
                         onChange={handleChange}
                         required
+                        className='input1'
                     />
                     <br /><br />
 
