@@ -3,6 +3,8 @@ import Embel from '../img/embel.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/authoContext';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 function SignUp() {
     const [formData, setFormData] = useState({
@@ -26,22 +28,37 @@ function SignUp() {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(
-                'https://6815245932debfe95dbafa1d.mockapi.io/users',
-                formData
+            const userCredintial = await createUserWithEmailAndPassword(
+                auth, formData.email, formData.password
             );
+            const firebaseUser = userCredintial.user;
 
-            if (response.data) {
-                setUser(response.data);
-                navigate('/');
-            }
+            const profile = {
+                uid: firebaseUser.uid,
+                name: firebaseUser.name,
+                phone: formData.phone,
+                email: formData.email,
+                avatar: 'https://i.pravatar.cc/100'
+            };
+            await axios.post('https://6815245932debfe95dbafa1d.mockapi.io/users', profile);
+            setUser(firebaseUser);
+            navigate('/');
         } catch (error) {
-            console.error('Ошибка регистрации:', error);
-            alert('Ошибка при регистрации');
+            console.error('Firebase Error:', error.code, error.message, error);
+
+            if (error.code === 'auth/email-already-in-use') {
+                alert('Этот email уже используется.');
+            } else if (error.code === 'auth/invalid-email') {
+                alert('Неверный формат email.');
+            } else if (error.code === 'auth/weak-password') {
+                alert('Пароль должен быть не менее 6 символов.');
+            } else {
+                alert('Неизвестная ошибка: ' + error.message);
+            }
         } finally {
             setLoading(false);
         }
-    };
+    }
 
     return (
         <div className='container'>

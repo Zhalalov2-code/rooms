@@ -12,20 +12,20 @@ import BookedDetails from "./pages/booked.details";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/booking" element={<Booking />} />
-          <Route path="/hotel/:id" element={<Details />} /> 
+          <Route path="/hotel/:id" element={<Details />} />
           <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
           <Route path="/card" element={<Card />} />
-          <Route path="/booked/:id" element={<BookedDetails />} /> 
+          <Route path="/booked/:id" element={<BookedDetails />} />
         </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

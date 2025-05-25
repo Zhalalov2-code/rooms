@@ -5,25 +5,29 @@ import { useAuth } from '../components/authoContext';
 import '../css/profil.css';
 
 function Profil() {
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
   const [profileData, setProfileData] = useState(null);
   const [editField, setEditField] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    if (!user?.id) return;
+    if (!user?.uid) return;
 
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`https://6815245932debfe95dbafa1d.mockapi.io/users/${user.id}`);
-        setProfileData(response.data);
+        const response = await axios.get(`https://6815245932debfe95dbafa1d.mockapi.io/users?uid=${user.uid}`);
+        if(response.data.length > 0){
+          setProfileData(response.data[0]);
+        }else{
+          console.warn('Пользователь с таким uid не найден в MockAPI');
+        }
       } catch (error) {
         console.error('Ошибка при получении данных пользователя:', error.message);
       }
     };
 
     fetchUser();
-  }, [user?.id]);
+  }, [user?.uid]);
 
   if (!user) return <p>Пожалуйста, войдите в свою учетную запись для просмотра профиля.</p>;
   if (!profileData) return <p>Загрузка профиля...</p>;
@@ -43,8 +47,7 @@ function Profil() {
         updated
       );
       setProfileData(response.data);
-      setEditField(null);
-      setUser(response.data); 
+      setEditField(null); 
     } catch (err) {
       console.error('Ошибка при сохранении:', err.response?.data || err.message);
       alert('Ошибка при сохранении: ' + (err.response?.data?.message || err.message));
