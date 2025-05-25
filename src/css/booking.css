@@ -25,3 +25,28 @@
 .booked-info {
   padding: 10px;
 }
+
+.deleteBtn{
+  background-color: #7C6A46;
+  border: solid 1px #7C6A46;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.deleteBtn:hover{
+  background-color: #5E4F33
+}
+
+.deleteBtn1{
+  background-color: #7C6A46;
+  border: solid 1px #7C6A46;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 10px;
+}
+
+.deleteBtn1:hover{
+  background-color: #5E4F33
+}

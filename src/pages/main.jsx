@@ -3,22 +3,20 @@ import Navbar from "../components/navbar";
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Card from '../components/card';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Main() {
-  // Состояния для хранения данных
   const [originalHotels, setOriginalHotels] = useState([]);
   const [filteredHotels, setFilteredHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Параметры поиска
   const [searchParams, setSearchParams] = useState({
     location: '',
-    checkIn: '',
-    guests: ''
+    checkIn: null,
+    checkOut: null
   });
 
-  // Параметры фильтрации
   const [filters, setFilters] = useState({
     country: '',
     city: '',
@@ -31,14 +29,12 @@ function Main() {
     amenities: []
   });
 
-  // Получаем уникальные значения для фильтров
   const allCountries = [...new Set(originalHotels.map(hotel => hotel.country))];
   const allCities = [...new Set(originalHotels.map(hotel => hotel.city))];
   const allAmenities = Array.from(
     new Set(originalHotels.flatMap(hotel => hotel.amenities))
   ).sort();
 
-  // Эффект для загрузки данных и обработки скролла
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -85,7 +81,7 @@ function Main() {
     fetchHotels({
       city: searchParams.location,
       checkIn: searchParams.checkIn,
-      rooms: searchParams.guests
+      rooms: searchParams.checkOut
     });
   };
 
@@ -171,22 +167,6 @@ function Main() {
             placeholder='Куда вы хотите поехать?'
             value={searchParams.location}
             onChange={handleInputChange}
-          />
-          <input
-            className='search-input date-input'
-            type="date"
-            name="checkIn"
-            value={searchParams.checkIn}
-            onChange={handleInputChange}
-          />
-          <input
-            className='search-input'
-            type="number"
-            name="guests"
-            placeholder='Количество комнат'
-            value={searchParams.guests}
-            onChange={handleInputChange}
-            min="1"
           />
           <button type="submit" className='search-button'>Поиск</button>
         </form>

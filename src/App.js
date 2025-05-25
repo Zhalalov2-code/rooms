@@ -8,6 +8,7 @@ import Booking from "./pages/booking";
 import Profil from "./pages/profil";
 import Card from "./components/card";
 import Details from "./pages/room.details";
+import BookedDetails from "./pages/booked.details";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/hotel/:id" element={<Details />} /> 
           <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
           <Route path="/card" element={<Card />} />
+          <Route path="/booked/:id" element={<BookedDetails />} /> 
         </Routes>
       </BrowserRouter>
     </AuthProvider>

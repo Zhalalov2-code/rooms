@@ -1,59 +1,58 @@
+
 .profile-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #7C6A46;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px 3px #7C6A46 ;
-    text-align: center;
-    color: white;
+  max-width: 480px;
+  margin: 40px auto;
+  background: rgba(255 255 255 / 0.1);
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.15),
+    0 8px 20px rgba(0,0,0,0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255 255 255 / 0.2);
 }
 
-.profile-container h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 20px;
+.title-profile {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  font-size: 2.5rem;
 }
 
-.profile-container p {
-    font-size: 1.1rem;
-    margin: 15px 0;
-    line-height: 1.6;
+.profile-container > div {
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.profile-container p strong {
-    font-weight: 700;
-    color: burlywood;
-}
-
-.profile-container .logout-btn {
-    background-color: #ff4d4d;
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
+.buttonEdit{
+    background-color: green;
+    border: solid 1px green;
     border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
+    color: white;
 }
 
-.profile-container .logout-btn:hover {
-    background-color: #e60000;
+.buttonEdit:hover{
+    background-color: #006400;
 }
 
-@media (max-width: 600px) {
-    .profile-container {
-        margin: 20px;
-        padding: 15px;
-    }
+.edit-button1{
+    border-radius: 5px;
+    background-color: #7C6A46;
+    border: solid 1px #7C6A46;
+    color: white;
+}
 
-    .profile-container h1 {
-        font-size: 2rem;
-    }
-
-    .profile-container p {
-        font-size: 1rem;
-    }
+@media (max-width: 520px) {
+  .profile-container {
+    margin: 20px 12px;
+    padding: 20px 25px;
+  }
+  .profile-container h1 {
+    font-size: 2rem;
+  }
 }

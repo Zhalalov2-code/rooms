@@ -62,6 +62,13 @@
   padding: 0 15px;
   font-size: 1rem;
   min-width: 150px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #5E4F33;
+  box-shadow: 0 0 0 3px rgba(124, 106, 70, 0.2);
 }
 
 .date-input {
@@ -147,5 +154,77 @@
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 8;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-weight: bold;
+  color: #444;
+}
+
+.filter-group select,
+.filter-group input[type="number"] {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-group select:focus,
+.filter-group input[type="number"]:focus {
+  outline: none;
+  border-color: #7C6A46;
+  box-shadow: 0 0 0 3px rgba(124, 106, 70, 0.2);
+}
+
+.price-range,
+.rating-range,
+.rooms-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-range input,
+.rating-range input,
+.rooms-range input {
+  width: 100%;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 16px;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.reset-button {
+  width: 300px;
+  background-color: #7C6A46;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  align-self: flex-start;
+}
+
+.reset-button:hover {
+  background-color: #5E4F33;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.reset-button:active {
+  background-color: #4b3e29;
 }

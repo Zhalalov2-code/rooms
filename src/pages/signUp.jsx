@@ -11,8 +11,9 @@ function SignUp() {
         email: '',
         password: ''
     });
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { setUser } = useAuth();
 
     const handleChange = (e) => {
         setFormData({
@@ -23,19 +24,22 @@ function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const response = await axios.post(
                 'https://6815245932debfe95dbafa1d.mockapi.io/users',
                 formData
             );
-            console.log('Успешная регистрация:', response.data);
+
             if (response.data) {
-                login(response.data); 
-                navigate('/login');
+                setUser(response.data);
+                navigate('/');
             }
         } catch (error) {
             console.error('Ошибка регистрации:', error);
             alert('Ошибка при регистрации');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -93,14 +97,15 @@ function SignUp() {
                     />
                     <br /><br />
 
-                    <button className='btn1' type="submit">Регистрация</button>
+                    <button className='btn1' type="submit" disabled={loading}>
+                        {loading ? 'Регистрация...' : 'Регистрация'}
+                    </button>
                 </form>
                 <br />
                 <a href="/login">Уже есть аккаунт</a>
             </div>
         </div>
-    )
-
+    );
 }
 
 export default SignUp;

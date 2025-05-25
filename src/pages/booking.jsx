@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/navbar.jsx";
 import "../css/booking.css";
+import { Link } from "react-router-dom";
 
 function Booked() {
     const [bookedRooms, setBookedRooms] = useState([]);
@@ -31,9 +32,11 @@ function Booked() {
                 city: roomToReturn.city,
                 country: roomToReturn.country,
                 checkIn: roomToReturn.checkIn,
+                checkOut: roomToReturn.checkOut,
                 price: roomToReturn.price,
                 rating: roomToReturn.rating,
                 amenities: roomToReturn.amenities,
+                renterName: roomToReturn.renterName
             });
 
             await axios.delete(`https://681f76f472e59f922ef6578f.mockapi.io/booked/${id}`);
@@ -61,8 +64,11 @@ function Booked() {
                                     <p>{room.description}</p>
                                     <p><strong>Город:</strong> {room.city}</p>
                                     <p><strong>Дата заезда:</strong> {room.checkIn}</p>
+                                    <p><strong>Дата выезда:</strong> {room.checkOut }</p>
                                     <p><strong>Цена:</strong> ${room.price}/night   </p>
-                                    <button onClick={() => handleDelete(room.id)}>Удалить</button>
+                                    <p><strong>Имя арендатора: </strong>{room.renterName}</p>
+                                    <button className="deleteBtn" onClick={() => handleDelete(room.id)}>Удалить</button>
+                                     <Link to={`/booked/${room.id}`}><button className="deleteBtn1">Подробнее</button></Link>
                                 </div>
                             </div>
                         ))}

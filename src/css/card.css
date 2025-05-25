@@ -68,7 +68,7 @@
   white-space: nowrap;
 }
 
-.hotel-footer{
+.hotel-footer {
   padding: 20px;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .hotel-footer button {
-  background-color: #0071c2;
+  background-color: #7C6A46;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -96,5 +96,5 @@
 }
 
 .hotel-footer button:hover {
-  background-color: #005fa3;
+  background-color: #5E4F33;
 }
