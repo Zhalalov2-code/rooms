@@ -3,7 +3,7 @@ import Embel from '../img/embel.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/authoContext';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 
 function SignUp() {
@@ -33,9 +33,13 @@ function SignUp() {
             );
             const firebaseUser = userCredintial.user;
 
+            await updateProfile(firebaseUser, {
+                displayName: formData.name
+            });
+
             const profile = {
                 uid: firebaseUser.uid,
-                name: firebaseUser.name,
+                name: formData.name,
                 phone: formData.phone,
                 email: formData.email,
                 avatar: 'https://i.pravatar.cc/100'

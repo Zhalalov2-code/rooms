@@ -4,12 +4,8 @@ import Embel from '../img/embel.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/authoContext';
-import {
-  auth,
-  googleProvider,
-  githubProvider
-} from '../firebase/firebase';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider, githubProvider } from '../firebase/firebase';
+import { signInWithEmailAndPassword, signInWithPopup, setPersistence, browserLocalPersistence } from 'firebase/auth';
 
 function Login() {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -25,7 +21,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      // 1. Firebase Auth — вход по email и паролю
+      await setPersistence(auth, browserLocalPersistence);
       const result = await signInWithEmailAndPassword(
         auth,
         formData.email,
@@ -33,16 +29,15 @@ function Login() {
       );
       const firebaseUser = result.user;
 
-      // 2. Ищем профиль в MockAPI по uid
       const response = await axios.get(
         `https://6815245932debfe95dbafa1d.mockapi.io/users?uid=${firebaseUser.uid}`
       );
 
       if (response.data.length > 0) {
-        setUser(firebaseUser); // сохраняем Firebase user
+        setUser(firebaseUser);
         navigate('/');
       } else {
-        alert('Профиль не найден в базе. Обратитесь в поддержку.');
+        alert('Профиль не найден в базе.');
       }
     } catch (error) {
       console.error('Ошибка входа:', error);
@@ -55,16 +50,15 @@ function Login() {
   const handleOAuthLogin = async (provider) => {
     setLoading(true);
     try {
+      await setPersistence(auth, browserLocalPersistence);
       const result = await signInWithPopup(auth, provider);
       const firebaseUser = result.user;
 
-      // 1. Проверяем, есть ли пользователь в MockAPI
       const checkResponse = await axios.get(
         `https://6815245932debfe95dbafa1d.mockapi.io/users?uid=${firebaseUser.uid}`
       );
 
       if (checkResponse.data.length === 0) {
-        // 2. Если нет — создаём
         const newUser = {
           uid: firebaseUser.uid,
           name: firebaseUser.displayName,

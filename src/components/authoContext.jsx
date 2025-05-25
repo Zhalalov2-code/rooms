@@ -1,11 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import {
-    getAuth,
-    onAuthStateChanged,
-    signOut,
-    signInWithPopup,
-    GoogleAuthProvider
-} from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { app } from '../firebase/firebase';
 
 const AuthContext = createContext();
@@ -13,7 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isGoogleAuth, setIsGoogleAuth] = useState(false);
-    const [loading, setLoading] = useState(true); // для корректной загрузки
+    const [loading, setLoading] = useState(true);
 
     const auth = getAuth(app);
 
@@ -56,7 +50,7 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 loginWithGoogle,
                 isGoogleAuth,
-                loading // на случай, если ты хочешь показать спиннер
+                loading
             }}
         >
             {children}

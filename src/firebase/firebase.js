@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { getAuth, setPersistence, browserLocalPersistence, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -14,8 +14,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log("Сессия будет сохраняться в localStorage");
+  })
+  .catch((error) => {
+    console.error("Ошибка установки персистентности:", error);
+  });
+
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
-
-export {auth, googleProvider, githubProvider, app, signInWithPopup}
+export { auth, googleProvider, githubProvider, app, signInWithPopup };
